@@ -1,0 +1,31 @@
+services:
+
+  nginx:
+    image: jffe-nginx
+    build:
+      dockerfile: ci/nginx/Dockerfile
+    volumes:
+      - cdn-data:/var/www/cdn
+    ports:
+      - "8088:80"
+    depends_on:
+      - files
+
+  base:
+    image: jffe-base
+    build:
+      dockerfile: ci/base/Dockerfile
+
+  files:
+    image: jffe-base
+    command: /bin/bash /app/src/ci/files/run.sh
+    environment:
+      JFFE_FILES_CONFIG: /app/cfg/jffe.yml
+    volumes:
+      - cdn-data:/app/run/cdn
+    depends_on:
+      - base
+
+
+volumes:
+  cdn-data:

@@ -1,0 +1,10 @@
+debug: True
+
+file_loder:
+  storage_dir: /app/run/cdn
+  cdn_base_url: http://localhost:8088/cdn
+
+meta_loder:
+  storage_dir: /app/run/meta
+
+file_handler_class: jffe.core.files.file_handlers.fs.FsFileHandler

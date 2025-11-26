@@ -1,0 +1,1 @@
+The jffe.core package must contain the main code of the project.

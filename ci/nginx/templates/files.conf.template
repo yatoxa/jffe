@@ -1,0 +1,17 @@
+upstream files_upstream {
+    server files:80;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+
+    location / {
+        proxy_pass http://files_upstream;
+    }
+
+    location /cdn/ {
+        root /var/www;
+        try_files $uri =404;
+    }
+}

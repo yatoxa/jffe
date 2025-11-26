@@ -1,0 +1,31 @@
+services:
+
+  nginx:
+    volumes:
+      - ./ci/nginx/templates:/etc/nginx/templates
+
+  files:
+    volumes:
+      - ./:/app/src
+      - ./etc/config:/app/cfg
+
+  cli:
+    image: jffe-base
+    command: tail -f /dev/stdout
+    volumes:
+      - ./:/app/src
+    depends_on:
+      - base
+
+  tests:
+    build:
+      dockerfile: ci/tests/Dockerfile
+      network: host
+      additional_contexts:
+        jffe-base: "service:base"
+    command: /bin/bash /app/src/ci/tests/run.sh
+    volumes:
+      - ./:/app/src
+    depends_on:
+      - base
+      - nginx

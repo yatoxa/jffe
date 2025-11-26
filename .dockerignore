@@ -1,0 +1,9 @@
+*
+
+!ci
+!bin
+!etc
+!jffe
+!tests
+!pyproject.toml
+!setup.py
