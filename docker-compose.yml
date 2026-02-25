@@ -4,6 +4,7 @@ services:
     image: jffe-nginx
     build:
       dockerfile: ci/nginx/Dockerfile
+      network: host
     volumes:
       - cdn-data:/var/www/cdn
     ports:
@@ -15,6 +16,7 @@ services:
     image: jffe-base
     build:
       dockerfile: ci/base/Dockerfile
+      network: host
 
   files:
     image: jffe-base

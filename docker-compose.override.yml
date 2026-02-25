@@ -18,6 +18,7 @@ services:
       - base
 
   tests:
+    image: jffe-tests
     build:
       dockerfile: ci/tests/Dockerfile
       network: host

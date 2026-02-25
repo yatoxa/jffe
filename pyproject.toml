@@ -1,5 +1,41 @@
-[tool.distutils.egg_info]
-egg_base = '/tmp/jffe_build'
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jffe"
+dynamic = ["version"]
+authors = [{ name = "Toxa Yantsen" }]
+description = "Just For Fun Examples"
+license = { text = "MIT" }
+dependencies = [
+    "pydantic~=2.10.6",
+    "aiohttp~=3.13.2",
+    "PyYAML~=6.0.2",
+]
+
+[project.optional-dependencies]
+test = [
+    "coverage",
+    "pytest",
+    "pytest-mock",
+    "pytest-asyncio",
+    "pytest-aiohttp",
+]
+dev = [
+    "flake8~=6.0.0",
+    "black~=23.12.0",
+    "isort~=5.12.0",
+]
+
+[tool.setuptools.dynamic]
+version = { attr = "jffe.__version__.VERSION" }
+
+[tool.setuptools]
+zip-safe = false
+
+[tool.setuptools.packages.find]
+include = ["jffe*"]
 
 [tool.isort]
 profile = 'black'
@@ -12,7 +48,7 @@ line_length = 88
 
 [tool.black]
 line-length = 88
-target-version = ["py311"]
+target-version = ["py312"]
 
 [tool.pytest.ini_options]
 minversion = '6.0'

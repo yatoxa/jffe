@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM python:3.12
 
 ARG PROJECT_HOME=/app
 ARG PROJECT_SRC=${PROJECT_HOME}/src
@@ -12,8 +12,6 @@ COPY ./etc/config/*.yml ${PROJECT_CFG}/
 
 RUN python -m venv --copies --clear --upgrade-deps ${VENV_HOME} \
     && ${PYTHON_VENV} -m pip install -U pip
-
-RUN ${PYTHON_VENV} -m pip install -U -r ${PROJECT_SRC}/etc/requirements.txt
 
 RUN ${PYTHON_VENV} -m pip install -U -e ${PROJECT_SRC}
 
