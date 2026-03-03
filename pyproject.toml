@@ -10,22 +10,22 @@ description = "Just For Fun Examples"
 license = { text = "MIT" }
 dependencies = [
     "pydantic~=2.10.6",
-    "aiohttp~=3.13.2",
-    "PyYAML~=6.0.2",
+    "aiohttp~=3.13.3",
+    "PyYAML~=6.0.3",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 test = [
-    "coverage",
+    "coverage[toml]",
     "pytest",
     "pytest-mock",
     "pytest-asyncio",
     "pytest-aiohttp",
 ]
 dev = [
-    "flake8~=6.0.0",
-    "black~=23.12.0",
-    "isort~=5.12.0",
+    "flake8~=7.3.0",
+    "black~=26.1.0",
+    "isort~=8.0.1",
 ]
 
 [tool.setuptools.dynamic]
@@ -38,7 +38,7 @@ zip-safe = false
 include = ["jffe*"]
 
 [tool.isort]
-profile = 'black'
+profile = "black"
 skip_gitignore = true
 multi_line_output = 3
 include_trailing_comma = true
@@ -51,12 +51,20 @@ line-length = 88
 target-version = ["py312"]
 
 [tool.pytest.ini_options]
-minversion = '6.0'
-cache_dir = '/tmp/pytest_cache'
-asyncio_mode = 'auto'
+minversion = "6.0"
+cache_dir = "/tmp/pytest_cache"
+asyncio_mode = "auto"
 markers = [
-    'asyncio',
+    "asyncio",
 ]
 testpaths = [
-    'tests',
+    "tests",
 ]
+
+[tool.coverage.run]
+source = [
+    "jffe",
+]
+
+[tool.coverage.report]
+show_missing = true

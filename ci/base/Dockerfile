@@ -11,7 +11,7 @@ COPY . ${PROJECT_SRC}
 COPY ./etc/config/*.yml ${PROJECT_CFG}/
 
 RUN python -m venv --copies --clear --upgrade-deps ${VENV_HOME} \
-    && ${PYTHON_VENV} -m pip install -U pip
+    && ${PYTHON_VENV} -m pip install -U "pip>=25.1"
 
 RUN ${PYTHON_VENV} -m pip install -U -e ${PROJECT_SRC}
 
